@@ -12,7 +12,7 @@ public class Main {
         while (!exit) {
             showMenu();
             int choice = scanner.nextInt();
-            scanner.nextLine(); // Clear newline
+            scanner.nextLine();
 
             switch (choice) {
                 case 1 -> addStudent();
@@ -28,7 +28,7 @@ public class Main {
                 case 12 -> sortByName();
                 case 13 -> clearAllStudents();
                 case 14 -> {
-                    System.out.println("Goodbye 👋");
+                    System.out.println("Goodbye");
                     exit = true;
                 }
                 default -> System.out.println("Invalid option. Try again!");
@@ -37,7 +37,7 @@ public class Main {
     }
 
     public static void showMenu() {
-        System.out.println("\n📘 Student Manager Menu:");
+        System.out.println("\n Student Manager Menu:");
         System.out.println("1. Add Student");
         System.out.println("2. View All Students");
         System.out.println("5. Search Student by ID");
@@ -62,18 +62,18 @@ public class Main {
 
         System.out.print("Enter student grade: ");
         double grade = scanner.nextDouble();
-        scanner.nextLine(); // Clear newline
+        scanner.nextLine();
 
         Student student = new Student(name, id, grade);
         students.add(student);
-        System.out.println("✅ Student added successfully!");
+        System.out.println("Student added successfully!");
     }
 
     public static void viewAllStudents() {
         if (students.isEmpty()) {
             System.out.println("No students yet.");
         } else {
-            System.out.println("\n👨‍🎓 All Students:");
+            System.out.println("\n All Students:");
             for (Student s : students) {
                 s.displayInfo();
             }
@@ -82,13 +82,13 @@ public class Main {
     public static void deleteStudent() {
         System.out.print("Enter student ID to delete: ");
         int id = scanner.nextInt();
-        scanner.nextLine(); // Clear newline
+        scanner.nextLine();
 
         boolean removed = students.removeIf(s -> s.id == id);
         if (removed) {
-            System.out.println("❌ Student deleted successfully.");
+            System.out.println("Student deleted successfully.");
         } else {
-            System.out.println("⚠️ Student not found.");
+            System.out.println("Student not found.");
         }
     }
 
@@ -106,7 +106,7 @@ public class Main {
             }
         }
         if (!found) {
-            System.out.println("❓ Student not found.");
+            System.out.println("Student not found.");
         }
     }
 
@@ -122,7 +122,7 @@ public class Main {
             }
         }
         if (!found) {
-            System.out.println("❓ No student found with that name.");
+            System.out.println("No student found with that name.");
         }
     }
 
@@ -137,7 +137,7 @@ public class Main {
             total += s.grade;
         }
         double average = total / students.size();
-        System.out.printf("📊 Average Grade: %.2f\n", average);
+        System.out.printf("Average Grade: %.2f\n", average);
     }
 
     public static void showHighestGrade() {
@@ -147,7 +147,7 @@ public class Main {
         }
 
         Student top = Collections.max(students, Comparator.comparingDouble(s -> s.grade));
-        System.out.println("🏆 Highest Grade Student:");
+        System.out.println("Highest Grade Student:");
         top.displayInfo();
     }
 
@@ -158,29 +158,29 @@ public class Main {
         }
 
         Student lowest = Collections.min(students, Comparator.comparingDouble(s -> s.grade));
-        System.out.println("🔻 Lowest Grade Student:");
+        System.out.println("Lowest Grade Student:");
         lowest.displayInfo();
     }
 
     public static void countStudents() {
-        System.out.println("📌 Total number of students: " + students.size());
+        System.out.println("Total number of students: " + students.size());
     }
 
     public static void sortByGrade() {
         students.sort(Comparator.comparingDouble(s -> s.grade));
-        System.out.println("🔢 Students sorted by grade.");
+        System.out.println("Students sorted by grade.");
         viewAllStudents();
     }
 
     public static void sortByName() {
         students.sort(Comparator.comparing(s -> s.name.toLowerCase()));
-        System.out.println("🔤 Students sorted by name.");
+        System.out.println("Students sorted by name.");
         viewAllStudents();
     }
 
     public static void clearAllStudents() {
         students.clear();
-        System.out.println("🧹 All students have been removed.");
+        System.out.println("All students have been removed.");
     }
 }
 
